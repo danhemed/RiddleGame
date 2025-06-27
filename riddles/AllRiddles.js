@@ -1,5 +1,5 @@
-import r1 from './riddles/r1.js';
-import r2 from './riddles/r2.js';
+import r1 from './r1.js';
+import r2 from './r2.js';
 
 const AllRiddles = [r1, r2];
 
