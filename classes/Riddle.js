@@ -9,7 +9,7 @@ export default class Riddle {
     }
 
     ask() {
-        const answer = readline.question(this.taskDescription);
+        const answer = readline.question(`${this.taskDescription}\n`);
         return answer;
     } 
 }
