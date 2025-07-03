@@ -1,13 +1,47 @@
 import readline from 'readline-sync';
+import fs from 'fs';
 
-import Player from './classes/Player.js';
-import playerName from './Player/playerName.js';
-import AllRiddle from './riddles/AllRiddles.js';
-import Riddle from './classes/Riddle.js';
+import Player from '../classes/Player.js';
+import playerName from '../Player/playerName.js';
+// import AllRiddle from './riddles/AllRiddles.js';
+import Riddle from '../classes/Riddle.js';
+
+// function LoadRiddle(path) {
+//     return new Promise((res, rej) => {
+//         fs.readFile(path, "utf-8", (err, data) => {
+//             if (err) {
+//                 console.log(`readFile ERROE: ${err}`);
+//                 rej(err);
+//                 return;
+//             }
+
+//             try {
+//                 const allData = JSON.parse(data);
+//                 res(allData);
+//             } catch (err) {
+//                 console.log(`JESON parse ERROE: ${err}`);
+//                 rej(err);
+//             }
+//         });
+//     });
+// }
+
+// const path = "./riddles/db.txt";
+// LoadRiddle(path)
+//     .then((res) => {
+//         for (obj of res) {
+//             AllRiddle.push(obj);
+//         }
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     })
+
+const AllRiddle = JSON.parse(fs.readFileSync("./riddles/db.txt", "utf-8"));
 
 function StartGame() {
     const player = new Player(playerName);
-    console.log(`\n*** WELCOME ${player.name} TO RIDDLE GAME ***\n`);
+    console.log(`\n*** WELCOME ${player.name.toUpperCase()} TO RIDDLE GAME ***\n`);
 
     let counter = 0;
 
@@ -19,6 +53,8 @@ function StartGame() {
         let correctAnswer = false;
 
         while (!correctAnswer) {
+            console.log(`~~ Level ${counter + 1} ~~`);
+            
             let answer = riddle.ask();
 
             if (answer.toLowerCase() === "exit") {
@@ -38,7 +74,7 @@ function StartGame() {
         player.recordTime(start, end);
         counter++;
     }
-
+    console.log(`YOU WIN!!!\n`);
     player.showStats();
 }
 
