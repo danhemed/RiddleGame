@@ -11,11 +11,13 @@ export async function ReadFile(path) {
     })
 }
 
-export async function WriteFile(path) {
+export async function WriteFile(path, data) {
     return new Promise((res, rej) => {
-        if (err) {
-            rej(`WriteFile-ERROR: ${err}`);
-        }
-        res(data);
+        fs.writeFile(path, data, (err) => {
+            if (err) {
+                rej(`WriteFile-ERROR: ${err}`);
+            }
+            res(data);
+        })
     })
 }
