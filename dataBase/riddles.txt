@@ -1,14 +1,14 @@
 [
   {
     "id": 1,
-    "name": "Easy Math",
-    "taskDescription": "What is 5 + 3?",
-    "correctAnswer": "8"
+    "name": "Update Riddle",
+    "taskDescription": "Who am i?",
+    "correctAnswer": "dan"
   },
   {
     "id": 2,
-    "name": "logic riddles",
-    "taskDescription": "What has to be broken before you can use it?",
-    "correctAnswer": "egg"
+    "name": "Logic Q",
+    "taskDescription": "What has hands but can’t clap?",
+    "correctAnswer": "clock"
   }
 ]

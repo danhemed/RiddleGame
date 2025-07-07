@@ -1,4 +1,26 @@
-import fs from "fs";
+import readLine from "readline-sync";
+
+export async function GetData() {
+    const data = readLine.question();
+    try {
+        JSON.parse(data);
+    } catch (err) {
+        console.log(`GetData-JSONParse ERROR: ${err}`);
+    }
+    if (typeof data === "object") {
+        return data;
+    } else {
+        console.log(`Enter only Object like: { "id" : "1" }`);
+    }
+}
+
+
+export async function ReadAllRiddle(path) {
+    ReadFile(path)
+        .then(res => console.log(`data:\n${res}`));
+}
+
+
 
 export async function CreateRiddle(path, newRiddle) {
     return new Promise((res, rej) => {
@@ -35,25 +57,6 @@ export async function CreateRiddle(path, newRiddle) {
     });
 }
 
-export async function ReadAllRiddles(path) {
-    return new Promise((res, rej) => {
-        fs.readFile(path, "utf-8", (err, data) => {
-            if (err) {
-                return rej(`ReadAll-Read: ${err}`);
-            }
-
-            let riddles = [];
-            try {
-                riddles = JSON.parse(data);
-            } catch (err) {
-                return rej(`ReadAll-Json: ${err}`);
-            }
-
-            res(riddles);
-
-        });
-    });
-}
 
 export async function UpdateRiddle(path, newRiddleWithId) {
     return new Promise((res, rej) => {
