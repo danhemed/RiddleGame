@@ -3,8 +3,8 @@ import fs from 'fs';
 
 import PlayerClass from '../classes/Player.js';
 import RiddleClass from '../classes/Riddle.js';
-import PlayerSer from '../services/player.ser.js';
-import RiddleSer from '../services/riddle.ser.js';
+import PlayerSer from './Server/Services/player.ser.js';
+import RiddleSer from './Server/Services/riddle.ser.js';
 import playerName from '../Player/playerName.js';
 
 const AllRiddle = JSON.parse(fs.readFileSync("./riddles/db.txt", "utf-8"));
