@@ -1,41 +1,11 @@
 import readline from 'readline-sync';
 import fs from 'fs';
 
-import Player from '../classes/Player.js';
+import PlayerClass from '../classes/Player.js';
+import RiddleClass from '../classes/Riddle.js';
+import PlayerSer from '../services/player.ser.js';
+import RiddleSer from '../services/riddle.ser.js';
 import playerName from '../Player/playerName.js';
-// import AllRiddle from './riddles/AllRiddles.js';
-import Riddle from '../classes/Riddle.js';
-
-// function LoadRiddle(path) {
-//     return new Promise((res, rej) => {
-//         fs.readFile(path, "utf-8", (err, data) => {
-//             if (err) {
-//                 console.log(`readFile ERROE: ${err}`);
-//                 rej(err);
-//                 return;
-//             }
-
-//             try {
-//                 const allData = JSON.parse(data);
-//                 res(allData);
-//             } catch (err) {
-//                 console.log(`JESON parse ERROE: ${err}`);
-//                 rej(err);
-//             }
-//         });
-//     });
-// }
-
-// const path = "./riddles/db.txt";
-// LoadRiddle(path)
-//     .then((res) => {
-//         for (obj of res) {
-//             AllRiddle.push(obj);
-//         }
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     })
 
 const AllRiddle = JSON.parse(fs.readFileSync("./riddles/db.txt", "utf-8"));
 
