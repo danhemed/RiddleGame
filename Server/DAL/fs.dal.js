@@ -1,23 +1,17 @@
-import fs from "fs";
+import fs from "fs/promises";
 
-export async function ReadFile(path) {
-    return new Promise((res, rej) => {
-        fs.readFile(path, "utf-8", (err, data) => {
-            if (err) {
-                rej(`ReadFile-ERROR: ${err}`);
-            }
-            res(data);
-        })
-    })
+export async function readFile(path) {
+    try {
+        return await fs.readFile(path, "utf-8");
+    } catch (err) {
+        throw new Error(`DAL-readFile ERROR: ${err.message}`);
+    }
 }
 
-export async function WriteFile(path, data) {
-    return new Promise((res, rej) => {
-        fs.writeFile(path, data, (err) => {
-            if (err) {
-                rej(`WriteFile-ERROR: ${err}`);
-            }
-            res(data);
-        })
-    })
+export async function writeFile(path, data) {
+    try {
+        await fs.writeFile(path, data, "utf-8");
+    } catch (err) {
+        throw new Error(`DAL-writeFile ERROR: ${err.message}`);
+    }
 }
