@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 
-export async function readFile(path) {
+export async function ReadFile(path) {
     try {
         return await fs.readFile(path, "utf-8");
     } catch (err) {
@@ -8,7 +8,7 @@ export async function readFile(path) {
     }
 }
 
-export async function writeFile(path, data) {
+export async function WriteFile(path, data) {
     try {
         await fs.writeFile(path, data, "utf-8");
     } catch (err) {
