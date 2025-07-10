@@ -8,7 +8,7 @@
   {
     "id": 2,
     "name": "Logic Q",
-    "taskDescription": "What has hands but can’t clap?",
+    "taskDescription": "What has hands but can't clap?",
     "correctAnswer": "clock"
   }
 ]
