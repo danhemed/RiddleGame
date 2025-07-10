@@ -4,11 +4,5 @@
     "name": "Update Riddle",
     "taskDescription": "Who am i?",
     "correctAnswer": "dan"
-  },
-  {
-    "id": 2,
-    "name": "Logic Q",
-    "taskDescription": "What has hands but can't clap?",
-    "correctAnswer": "clock"
   }
 ]
