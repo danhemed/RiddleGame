@@ -40,11 +40,3 @@ export function MenuPlayer() {
         name
     };
 }
-
-export function MenuPlayGameLevel() {
-    return readline.question("Choose Level:\n1. Easy >>\n2. Medium >>\n3. Hard >>\n:");
-}
-
-export function MenuPlayerAnswer() {
-    return readline.question("Ente Your Answer: ")
-}

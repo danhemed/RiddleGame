@@ -1,14 +1,17 @@
 import { CRUD } from "../Server/services/generic.crud.js";
-import { Menu, MenuRiddle, MenuPlayer, MenuDelete } from "./menus.js";
+import { Menu, MenuRiddle, MenuDelete } from "./menus.js";
+import { PlayGame} from "./playGame.js";
 
-const player = new CRUD("../Server/db/players.txt");
 const riddle = new CRUD("../Server/db/riddles.txt");
-const leader = new CRUD("../Server/db/riddles.txt");
 
+let choice;
 
 do {
-    switch (Menu()) {
+    choice = Menu();
+
+    switch (choice) {
         case '1':
+            await PlayGame();
             break;
         case '2':
             await riddle.Create(MenuRiddle());
@@ -17,12 +20,16 @@ do {
             console.log(await riddle.GetAll());
             break;
         case '4':
-            await riddle.Update(MenuRiddle().id, MenuRiddle())
+            await riddle.Update(MenuRiddle())
             break;
         case '5':
             await riddle.Delete(MenuDelete());
             break;
         case '6':
+            await ShowPlayerVictories();
+            break;
+        case '0':
+            console.log(`BYE BYE!! `);
             break;
         default:
             console.log(`plase choose only number from 0 to 6!!`);
