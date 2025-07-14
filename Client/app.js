@@ -1,5 +1,6 @@
 import { CRUD } from "../Server/services/generic.crud.js";
-import { Menu, MenuRiddle, MenuDelete } from "./menus.js";
+import { Menu, MenuCreateRiddle, MenuUpdateRiddle } from "./menus.js";
+import { checkID } from "../Server/services/checkID.js";
 import { PlayGame} from "./playGame.js";
 
 const riddle = new CRUD("../Server/db/riddles.txt");
@@ -14,16 +15,16 @@ do {
             await PlayGame();
             break;
         case '2':
-            await riddle.Create(MenuRiddle());
+            await riddle.Create(MenuCreateRiddle());
             break;
         case '3':
             console.log(await riddle.GetAll());
             break;
         case '4':
-            await riddle.Update(MenuRiddle())
+            await riddle.Update(await checkID(await riddle.GetAll()), MenuUpdateRiddle())
             break;
         case '5':
-            await riddle.Delete(MenuDelete());
+            console.log(await riddle.Delete(await checkID(await riddle.GetAll())));
             break;
         case '6':
             await ShowPlayerVictories();
