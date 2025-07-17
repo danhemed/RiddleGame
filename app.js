@@ -1,9 +1,9 @@
-import { CRUD } from "../Server/services/generic.crud.js";
-import { Menu, MenuCreateRiddle, MenuUpdateRiddle } from "./menus.js";
-import { checkID } from "../Server/services/checkID.js";
-import { PlayGame} from "./playGame.js";
+import { CRUD } from "./Server/services/generic.crud.js";
+import { Menu, MenuCreateRiddle, MenuUpdateRiddle } from "./Client/menus.js";
+import { checkID } from "./Server/services/checkID.js";
+import { PlayGame} from "./Client/playGame.js";
 
-const riddle = new CRUD("../Server/db/riddles.txt");
+const riddle = new CRUD("./Server/db/riddles.txt");
 
 let choice;
 
@@ -12,7 +12,10 @@ do {
 
     switch (choice) {
         case '1':
-            await PlayGame();
+            const playGame = await PlayGame();
+            if (playGame ===  null) {
+                break;
+            }
             break;
         case '2':
             await riddle.Create(MenuCreateRiddle());
@@ -21,7 +24,12 @@ do {
             console.log(await riddle.GetAll());
             break;
         case '4':
-            await riddle.Update(await checkID(await riddle.GetAll()), MenuUpdateRiddle())
+            const allriddles = await riddle.GetAll();
+            const idExists = await checkID(allriddles);
+            if (idExists === null) {
+                break;
+            }
+            await riddle.Update(idExists, MenuUpdateRiddle())
             break;
         case '5':
             console.log(await riddle.Delete(await checkID(await riddle.GetAll())));

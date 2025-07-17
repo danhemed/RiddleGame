@@ -4,7 +4,7 @@ export async function ReadFile(path) {
     try {
         return await fs.readFile(path, "utf-8");
     } catch (err) {
-        throw new Error(`DAL-readFile ERROR: ${err.message}`);
+        throw new Error(`DAL-readFile ERROR: ${err.message}`)
     }
 }
 

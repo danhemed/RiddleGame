@@ -18,7 +18,7 @@ export class CRUD {
     async Create(newItem) {
         const items = await this.GetAll();
 
-        const exists = items.some(i => i.id == newItem.id);
+        const exists = items.some(i => Number(i.id) == Number(newItem.id));
         if (!exists) {
             items.push(newItem);
         } else {
@@ -37,13 +37,14 @@ export class CRUD {
         return newItem;
     }
 
-    async Update(updateItem) {
+    async Update(id, updateItem) {
+        id = Number(id);
         const items = await this.GetAll();
-        const index = items.findIndex(item => item.id === updateItem.id);
+        const index = items.findIndex(item => Number(item.id) === id);
         if (index === -1) {
             throw new Error(`ERROR! Item isn't found!`);
         }
-        updateItem.id = items[index].id;
+        
         items[index] = {...items[index], ...updateItem};
         let dataString = "";
         try {
@@ -56,9 +57,10 @@ export class CRUD {
     }
 
     async Delete(id) {
+        id = Number(id);
         let items = await this.GetAll();
         const len = items.length;
-        items = items.filter(item => item.id !== id);
+        items = items.filter(item => Number(item.id) !== id);
         if (items.length === len) {
             throw new Error(`Nothing has changed, maybe ID doesn't exist.`)
         }

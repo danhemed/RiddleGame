@@ -1,8 +1,8 @@
 [
   {
-    "id": 1,
-    "name": "Update Riddle",
-    "taskDescription": "Who am i?",
+    "id": "1",
+    "name": "first riddle",
+    "taskDescription": "how am i?",
     "correctAnswer": "dan"
   }
 ]
