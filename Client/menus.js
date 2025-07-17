@@ -13,7 +13,7 @@ export function Menu() {
     );
 }
 
-export function MenuRiddle() {
+export function MenuCreateRiddle() {
     const id = readline.question('Enter ID: ');
     const name = readline.question('Enter Name: ');
     const taskDescription = readline.question('Enter task Description: ');
@@ -27,11 +27,24 @@ export function MenuRiddle() {
     };
 }
 
-export function MenuDelete() {
-    return readline.question("Enter ID to Delete: ");
+export function MenuId() {
+    return readline.question('Enter ID: ');
+}
+
+export function MenuUpdateRiddle() {
+    const name = readline.question('Enter Name: ');
+    const taskDescription = readline.question('Enter task Description: ');
+    const correctAnswer = readline.question('Enter correct Answer: ');
+
+    return {
+        name,
+        taskDescription,
+        correctAnswer
+    };
 }
 
 export function MenuPlayer() {
+    console.log(`Hey player, enter your details >>`)
     const id = readline.question('Enter ID: ');
     const name = readline.question('Enter Name: ');
 

@@ -3,9 +3,10 @@ import Player from "../Server/class/Player.js";
 import { CRUD } from "../Server/services/generic.crud.js";
 import { MenuPlayer } from "./menus.js";
 
-const playerCrud = new CRUD("../Server/db/players.txt");
-const riddleCrud = new CRUD("../Server/db/riddles.txt");
+const playerCrud = new CRUD("Server/db/players.txt");
+const riddleCrud = new CRUD("Server/db/riddles.txt");
 
+// function to check if player exists if not create one and return player...
 async function PlayerEntry() {
     const jsonPlayer = MenuPlayer();
     const players = await playerCrud.GetAll();
@@ -25,8 +26,15 @@ async function PlayerEntry() {
     return player;
 }
 
+
+// function to show the riddles to the player and check if the answer is right or mistakes is,
+// if the player won the all game the function return true.
 async function PlayRiddles(player) {
     const allRiddles = await riddleCrud.GetAll();
+    if (allRiddles.length === 0) {
+        console.log(`There is no data at all.\n`)
+        return null;
+    }
     const riddles = allRiddles.map(r => new Riddle(r.id, r.name, r.taskDescription, r.correctAnswer));
 
     const start = Date.now();
@@ -65,19 +73,24 @@ async function PlayRiddles(player) {
     return true;
 }
 
+// function the play the game activate player and the ridlles if the player won it update the times of player...
 export async function PlayGame() {
     const player = await PlayerEntry();
     const won = await PlayRiddles(player);
-    
+
+    if (won === null) {
+        return null;
+    }
+
     if (won) {
-        await playerCrud.Update({
-            id : player.id,
+        await playerCrud.Update(player.id, {
             name : player.name,
             times : player.times
         })
     }
 }
 
+// function to show all victories of players
 export async function ShowPlayerVictories() {
     const players = await playerCrud.GetAll();
 

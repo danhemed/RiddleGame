@@ -5,7 +5,7 @@
   "description": "��#\u0000 \u0000E\u0000x\u0000e\u0000r\u0000c\u0000i\u0000s\u0000e\u0000s\u0000\r\u0000 \u0000",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --watch app.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/danhemed/Exercises#readme",
   "dependencies": {
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
     "readline-sync": "^1.4.10"
   }
 }
