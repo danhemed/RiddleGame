@@ -1,7 +1,23 @@
+import express from "express";
+import router from "./Server/routes/riddleRouter.js";
 import { CRUD } from "./Server/services/generic.crud.js";
 import { Menu, MenuCreateRiddle, MenuUpdateRiddle } from "./Client/menus.js";
 import { checkID } from "./Server/services/checkID.js";
 import { PlayGame} from "./Client/playGame.js";
+
+const PORT = process.env.PORT || 3005;
+
+const app = express();
+
+app.use(express.json());
+
+app.use('/riddles', router);
+
+app.listen(PORT, () => {
+    console.log(`Server runing on http://localhost:${PORT}...`);
+})
+
+
 
 const riddle = new CRUD("./Server/db/riddles.txt");
 
@@ -12,8 +28,8 @@ do {
 
     switch (choice) {
         case '1':
-            const playGame = await PlayGame();
-            if (playGame === null) {
+            const playGameServer = await PlayGameServer();
+            if (playGameServer === null) {
                 break;
             }
             break;
